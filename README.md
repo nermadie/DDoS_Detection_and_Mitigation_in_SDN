@@ -26,7 +26,7 @@ Dự án này triển khai giải pháp Phát hiện và giảm thiểu DDoS b�
 
 **SOURCE Folder**
 - **CONTROLLER**
-+ ***collect_ddos_traffic.py**: Mã python controller đê thu thập data DDoS
++ **collect_ddos_traffic.py**: Mã python controller đê thu thập data DDoS
 + **collect_normal_traffic.py**: Mã python controller để thu thập data bình thường
 + **DT_controller.py**: Controller dựa trên RYU
 + **mitigation_module.py**: Module giảm thiểu (Bao gồm phát hiện và giảm thiểu DDoS).
