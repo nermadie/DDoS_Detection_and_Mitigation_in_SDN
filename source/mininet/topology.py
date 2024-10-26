@@ -16,7 +16,7 @@ class MyTopo( Topo ):
 
         h1 = self.addHost( 'h1', cpu=1.0/20,mac="00:00:00:00:00:01", ip="10.0.0.1/24" )
         h2 = self.addHost( 'h2', cpu=1.0/20, mac="00:00:00:00:00:02", ip="10.0.0.2/24" )
-        h3 = self.addHost( 'h3', cpu=1.0/20, mac="00:00:00:00:00:03", ip="10.0.0.3/24" )    
+        h3 = self.addHost( 'h3', cpu=1.0/20, mac="00:00:00:00:00:03", ip="10.0.0.3/24" )
 
         s2 = self.addSwitch( 's2', cls=OVSKernelSwitch, protocols='OpenFlow13' )
 
@@ -56,11 +56,17 @@ class MyTopo( Topo ):
         self.addLink( s1, s2 )
         self.addLink( s2, s3 )
         self.addLink( s3, s4 )
-        
+
 def startNetwork():
 
     topo = MyTopo()
     c0 = RemoteController('c1', ip='10.10.52.202', port=6653)
+
+    controller_ip = None
+    with open("../controller_ip.txt", 'r') as file:
+        controller_ip = file.readline().strip()
+
+    c0 = RemoteController('c0', ip=controller_ip, port=6653)
     net = Mininet(topo=topo, link=TCLink, controller=c0)
 
     net.start()
